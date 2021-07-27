@@ -1,10 +1,9 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 
 const CalculatorPage = require('../pageobjects/calculator.page');
-const SecurePage = require('../pageobjects/secure.page');
 
 const pages = {
-    login: CalculatorPage
+    calculator: CalculatorPage
 }
 
 Given(/^I am on the (\w+) page$/, async (page) => {
@@ -16,7 +15,7 @@ When(/^I login with (\w+) and (.+)$/, async (username, password) => {
 });
 
 Then(/^I should see a flash message saying (.*)$/, async (message) => {
-    await expect(SecurePage.flashAlert).toBeExisting();
-    await expect(SecurePage.flashAlert).toHaveTextContaining(message);
+    // await expect(SecurePage.flashAlert).toBeExisting();
+    // await expect(SecurePage.flashAlert).toHaveTextContaining(message);
 });
 

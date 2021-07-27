@@ -1,12 +1,27 @@
 const Page = require('./page');
+const assert = require('chai').assert;
+const expect = require('chai').expect;
+const should = require('chai').should()
+
 const selectors = {
-    parkingLot:'select[name="ParkingLot"]',
+    parkingLot:'#ParkingLot',
     valetParking: 'option[value="Valet"]',
     shortParking: 'option[value="Short"]',
     economyParking: 'option[value="Economy"]',
     longGarageParking: 'option[value="Long-Garage"]',
     longSurfaceParking: 'option[value="Long-Surface"]',
-    startingDate: ''
+    startingDate: '#StartingDate',
+    startingTime: '#StartingTime',
+    startingTimeAm: '//input[name="StartingTimeAMPM" and value="AM"]',
+    startingTimePm: '//input[name="StartingTimeAMPM" and value="PM"]',
+    leavingDate: '#LeavingDate',
+    leavingTime: '#LeavingTime',
+    leavingTimeAm: '//input[name="LeavingTimeAMPM" and value="AM"]',
+    leavingTimePm: '//input[name="LeavingTimeAMPM" and value="PM"]',
+    calculateButton: 'input[name="Submit"]',
+    totalValue:'span.SubHead > b',
+    timeCalculation: 'span.BodyCopy > b'
+
 
 }
 /**
@@ -34,7 +49,7 @@ class CalculatorPage extends Page {
      * overwrite specifc options to adapt it to page object
      */
     open () {
-        return super.open('login');
+        return super.open('parkcalc');
     }
 }
 
