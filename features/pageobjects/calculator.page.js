@@ -31,9 +31,20 @@ class CalculatorPage extends Page {
     /**
      * define selectors using getter methods
      */
-    get inputUsername () { return $('#username') }
-    get inputPassword () { return $('#password') }
-    get btnSubmit () { return $('button[type="submit"]') }
+    get selectParkingLot () { return $(selectors.parkingLot) };
+    get optionValetParking () { return $(selectors.valetParking) };
+    get optionShortParking () { return $(selectors.shortParking) };
+    get optionEconomyParking () { return $(selectors.economyParking) };
+    get optionLongGarageParking () { return $(selectors.longGarageParking) };
+    get optionLongSurfaceParking () { return $(selectors.longSurfaceParking) };
+    get inputStartingDate () { return $(selectors.startingDate) };
+    get inputStartingTime () { return $(selectors.startingTime) };
+    get inputStartingTimeAm () { return $(selectors.startingTimeAm) };
+    get inputStartingTimePm () { return $(selectors.startingTimePm) };
+    get inputLeavingDate () { return $(selectors.leavingDate) };
+    get inputLeavingTime () { return $(selectors.leavingTime) };
+    get inputLeavingTimeAm () { return $(selectors.leavingTimeAm) };
+    get inputLeavingTimePm () { return $(selectors.leavingTimePm) };
 
     /**
      * a method to encapsule automation code to interact with the page
