@@ -10,8 +10,8 @@ Given(/^I am on the (\w+) page$/, async (page) => {
     await pages[page].open()
 });
 
-When(/^I login with (\w+) and (.+)$/, async (username, password) => {
-    await CalculatorPage.login(username, password)
+When(/^I add the values (\w+), (\w+), (\w+), (\w+), (\w+), (\w+), (.+)$/, async (parkingLot, startDate, startTime,startTZ, endDate, endTime, endTz) => {
+    await CalculatorPage.enterValues(parkingLot, startDate, startTime,startTZ, endDate, endTime, endTz)
 });
 
 Then(/^I should see a flash message saying (.*)$/, async (message) => {
