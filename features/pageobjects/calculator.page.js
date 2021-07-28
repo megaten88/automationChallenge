@@ -53,27 +53,43 @@ class CalculatorPage extends Page {
      * e.g. to login using username and password
      */
 
-    fieldsAssertions(){
-        expect(this.selectParkingLot).toBeDisplayed;
+    messageAssertions(message){
+        if(message=="error"){
+            pass
+        }else{
+            pass
+        }
     }
 
-    async calculate(){
-        await (await this.submitButton).click()
-    }
 
-    async enterValues (parkingLot, startDate, startTime,startTZ, endDate, endTime, endTz) {
-        let patternDate = /([\d]*)\/([\d]*)\/([\d]*)/;
-        let patternTime = /(^[0-9][0-2]?):([0-5][0-9])/;
+
+    async calculate(parkingLot, startDate, startTime,startTZ, endDate, endTime, endTz) {
+        let patternDate = /([1-9]|1[0-2])\/([1-9]|[12]\d|30|31)\/(\d{4})/;
+        let patternTime = /([0-9]|1[0-2]):([0-5][0-9])/;
 
         chaiAssert.typeOf(parkingLot,'string');
-        chaiAssert.match(startDate,patternDate,'Matches the correct date format');
-        chaiAssert.match(startTime,patternTime, 'Matches the correct time format');
-        chaiAssert.match(endDate,patternDate,'Matches the correct date format');
-        chaiAssert.match(endTime,patternTime, 'Matches the correct time format');
-        
-        // await (await this.inputUsername).setValue(username);
-        // await (await this.inputPassword).setValue(password);
-        // await (await this.btnSubmit).click();
+        chaiExpect(startDate).to.match(patternDate,'Incorrect date format')
+        chaiExpect(startTime).to.match(patternTime,'Incorrect time format')
+        chaiExpect(endDate).to.match(patternDate,'Incorrect date format')
+        chaiExpect(endTime).to.match(patternTime,'Incorrect time format')
+
+        await (await this.selectParkingLot).setValue(parkingLot);
+        await (await this.inputStartingDate).setValue(startDate);
+        await (await this.inputStartingTime).setValue(startTime);  
+        if(startTZ === 'AM'){
+            await (await this.inputStartingTimeAm).click();  
+        }else{
+            await (await this.inputStartingTimePm).click();
+        }
+        await (await this.inputLeavingDate).setValue(endDate);
+        await (await this.inputLeavingTime).setValue(endTime);
+        if(endTZ === 'AM'){
+            await (await this.inputLeavingTimeAm).click();  
+        }else{
+            await (await this.inputLeavingTimePm).click();
+        } 
+
+        await (await this.submitButton).click()
     }
 
     /**

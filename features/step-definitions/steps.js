@@ -11,11 +11,10 @@ Given(/^I am on the (\w+) page$/, async (page) => {
 });
 
 When(/^I add the values (\w+), (\w+), (\w+), (\w+), (\w+), (\w+), (.+)$/, async (parkingLot, startDate, startTime,startTZ, endDate, endTime, endTz) => {
-    await CalculatorPage.enterValues(parkingLot, startDate, startTime,startTZ, endDate, endTime, endTz)
+    await CalculatorPage.calculate(parkingLot, startDate, startTime,startTZ, endDate, endTime, endTz);
 });
 
-Then(/^I should see a flash message saying (.*)$/, async (message) => {
-    // await expect(SecurePage.flashAlert).toBeExisting();
-    // await expect(SecurePage.flashAlert).toHaveTextContaining(message);
+Then(/^I should see a flash message saying (.*)$/, (message) => {
+    CalculatorPage.messageAssertions(message);
 });
 
